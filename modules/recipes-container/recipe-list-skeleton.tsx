@@ -1,6 +1,6 @@
 export default function RecipeListSkeleton() {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-hidden>
+    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-hidden>
       {Array.from({ length: 9 }).map((_, i) => (
         <li
           key={i}
