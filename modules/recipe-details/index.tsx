@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Clock, Users, Star } from "lucide-react";
+import { ArrowLeft, Clock, Users, Star, Heart } from "lucide-react";
 import type { RecipeDetails as RecipeDetailsType } from "@/lib/types";
+import { useFavorites } from "@/lib/favorites-context";
 
 export default function RecipeDetails({
   details,
@@ -11,6 +12,8 @@ export default function RecipeDetails({
   details: RecipeDetailsType | null;
 }) {
   const router = useRouter();
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorited = details ? isFavorite(String(details.id)) : false;
 
   if (!details) {
     return (
@@ -46,15 +49,37 @@ export default function RecipeDetails({
           />
         ) : null}
         <div className="absolute inset-0 bg-linear-to-t from-neutral-900 to-transparent" />
-        <button
-          type="button"
-          onClick={() => router.back()}
-          className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-neutral-600 bg-neutral-800/90 px-3 py-2 text-sm font-medium text-neutral-100 shadow-lg backdrop-blur-sm transition hover:bg-neutral-700"
-          aria-label="Go back"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back
-        </button>
+        <div className="absolute left-4 top-4 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="flex items-center gap-2 rounded-full border border-neutral-600 bg-neutral-800/90 px-3 py-2 text-sm font-medium text-neutral-100 shadow-lg backdrop-blur-sm transition hover:bg-neutral-700"
+            aria-label="Go back"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back
+          </button>
+          {details && (
+            <button
+              type="button"
+              onClick={() =>
+                toggleFavorite({
+                  id: String(details.id),
+                  name: details.name,
+                  image: details.image,
+                })
+              }
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-600 bg-neutral-800/90 text-neutral-100 shadow-lg backdrop-blur-sm transition hover:bg-neutral-700"
+              aria-label={
+                favorited ? "Remove from favorites" : "Add to favorites"
+              }
+            >
+              <Heart
+                className={`h-5 w-5 ${favorited ? "fill-red-500 text-red-500" : ""}`}
+              />
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Content card - dark */}

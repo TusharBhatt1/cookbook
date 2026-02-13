@@ -1,10 +1,26 @@
+"use client";
+
 import { Recipe } from "@/lib/types";
-import { Star } from "lucide-react";
+import { useFavorites } from "@/lib/favorites-context";
+import { Star, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export default function RecipeCard({ recipe }: { recipe: Recipe }) {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorited = isFavorite(String(recipe.id));
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite({
+      id: String(recipe.id),
+      name: recipe.name,
+      image: recipe.image,
+    });
+  };
+
   return (
     <Link
       href={`/recipe/${recipe.id}`}
@@ -36,6 +52,16 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
             </svg>
           </div>
         )}
+        <button
+          type="button"
+          onClick={handleFavoriteClick}
+          className="absolute left-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm transition hover:bg-black/80 hover:scale-110"
+          aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
+        >
+          <Heart
+            className={`h-4 w-4 ${favorited ? "fill-red-500 text-red-500" : ""}`}
+          />
+        </button>
         {recipe.rating != null && (
           <span className="absolute right-2 top-2 flex items-center gap-1 rounded-full bg-black/70 px-2 py-0.5 text-xs font-medium text-amber-400 backdrop-blur-sm">
             <Star className="h-3 w-3 fill-amber-400" />
