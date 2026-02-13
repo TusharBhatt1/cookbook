@@ -4,7 +4,8 @@ import ErrorState from "../common/error-state";
 import RecipeListSkeleton from "./recipe-list-skeleton";
 import useRecipeList from "@/hooks/use-recipe-list";
 import RecipeCard from "./recipe-card";
-import { Loader, Loader2 } from "lucide-react";
+import SearchBanner from "./search-banner";
+import { Loader2 } from "lucide-react";
 
 export default function RecipeList({ query }: { query: string }) {
   const {
@@ -18,7 +19,7 @@ export default function RecipeList({ query }: { query: string }) {
   } = useRecipeList({ query });
 
   if (!hasQuery) {
-    return <EmptyState text="Enter a search term to find recipes." />;
+    return <SearchBanner />;
   }
 
   if (showLoading) {
