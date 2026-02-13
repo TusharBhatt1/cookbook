@@ -9,6 +9,7 @@ export interface Recipe {
   image?: string;
   cuisine?: string;
   difficulty?: string;
+  rating?: number;
 }
 
 export interface RecipeDetails {
