@@ -8,7 +8,7 @@ export default function RecipesContainer() {
   const [query, setQuery] = useState("");
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 px-4 py-6 sm:px-6">
+    <div className="mx-auto max-w-7xl space-y-6 px-4 py-6 sm:px-6">
       <RecipeSearch query={query} setQuery={setQuery} />
       <RecipeList query={query} />
     </div>

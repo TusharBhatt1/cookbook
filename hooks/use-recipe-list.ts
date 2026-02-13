@@ -1,15 +1,15 @@
-import getRecipeDetails from "@/server-actions/queries/get-recipe-details";
+import getRecipes from "@/server-actions/queries/get-recipes";
 import type { Recipe } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { STALE_TIME } from "@/constant";
 
 export default function useRecipeList({ query }: { query: string }) {
-  const trimmed = query.trim();
-  const hasQuery = trimmed.length > 0;
+  const trimmedQuery = query.trim();
+  const hasQuery = trimmedQuery.length > 0;
 
   const { data, isError, isLoading, isFetching } = useQuery({
-    queryKey: ["recipes", trimmed],
-    queryFn: () => getRecipeDetails(trimmed),
+    queryKey: ["recipes", trimmedQuery],
+    queryFn: () => getRecipes(trimmedQuery),
     enabled: hasQuery,
     staleTime: STALE_TIME,
   });

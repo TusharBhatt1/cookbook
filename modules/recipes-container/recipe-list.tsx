@@ -6,7 +6,7 @@ import Link from "next/link";
 import EmptyState from "../common/empty-state";
 import ErrorState from "../common/error-state";
 import RecipeListSkeleton from "./recipe-list-skeleton";
-import useRecipeList from "@/app/hooks/use-recipe-list";
+import useRecipeList from "@/hooks/use-recipe-list";
 
 export default function RecipeList({ query }: { query: string }) {
   const { recipes, hasQuery, hasResults, isError, showLoading } = useRecipeList(
@@ -37,7 +37,7 @@ export default function RecipeList({ query }: { query: string }) {
       {recipes.map((recipe) => (
         <li key={recipe.id}>
           <Link
-            href={`/recipes/${recipe.id}`}
+            href={`/recipe/${recipe.id}`}
             className="group flex gap-3 rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition-[box-shadow,border-color] duration-200 hover:border-neutral-300 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-600 dark:hover:shadow-neutral-900/50"
           >
             <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-neutral-100 dark:bg-neutral-800">
