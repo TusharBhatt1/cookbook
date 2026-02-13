@@ -1,32 +1,17 @@
 "use client";
 
 import React, { createContext, useCallback, useContext, useState } from "react";
+import { IFavoriteItem, IFavoritesContext } from "./types";
 
-export type FavoriteItem = {
-  id: string;
-  name: string;
-  image?: string;
-};
-
-type FavoritesContextType = {
-  favorites: FavoriteItem[];
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
-  addFavorite: (item: FavoriteItem) => void;
-  removeFavorite: (id: string) => void;
-  isFavorite: (id: string) => boolean;
-  toggleFavorite: (item: FavoriteItem) => void;
-};
-
-const FavoritesContext = createContext<FavoritesContextType | undefined>(
+const FavoritesContext = createContext<IFavoritesContext | undefined>(
   undefined,
 );
 
 export function FavoritesProvider({ children }: { children: React.ReactNode }) {
-  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const [favorites, setFavorites] = useState<IFavoriteItem[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const addFavorite = useCallback((item: FavoriteItem) => {
+  const addFavorite = useCallback((item: IFavoriteItem) => {
     setFavorites((prev) => {
       if (prev.some((f) => f.id === item.id)) return prev;
       return [...prev, item];
@@ -43,7 +28,7 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
   );
 
   const toggleFavorite = useCallback(
-    (item: FavoriteItem) => {
+    (item: IFavoriteItem) => {
       if (isFavorite(item.id)) {
         removeFavorite(item.id);
       } else {

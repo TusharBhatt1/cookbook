@@ -1,5 +1,5 @@
 import getRecipes from "@/server-actions/queries/get-recipes";
-import type { Recipe } from "@/lib/types";
+import type { IRecipe } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { STALE_TIME } from "@/constant";
 import { useEffect, useRef, useState } from "react";
@@ -19,7 +19,7 @@ export default function useRecipeList({ query }: { query: string }) {
     staleTime: STALE_TIME,
   });
 
-  const recipes = (data?.recipes ?? []) as Recipe[];
+  const recipes = (data?.recipes ?? []) as IRecipe[];
   const hasResults = recipes.length > 0;
   const showLoading = isLoading || (isFetching && hasQuery);
 

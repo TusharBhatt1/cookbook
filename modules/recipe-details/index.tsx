@@ -3,13 +3,13 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Clock, Users, Star, Heart } from "lucide-react";
-import type { RecipeDetails as RecipeDetailsType } from "@/lib/types";
+import type { IRecipeDetails } from "@/lib/types";
 import { useFavorites } from "@/lib/favorites-context";
 
 export default function RecipeDetails({
   details,
 }: {
-  details: RecipeDetailsType | null;
+  details: IRecipeDetails | null;
 }) {
   const router = useRouter();
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -36,7 +36,6 @@ export default function RecipeDetails({
 
   return (
     <main className="min-h-screen bg-neutral-900">
-      {/* Hero image - full bleed */}
       <div className="relative h-[280px] w-full overflow-hidden bg-neutral-800 sm:h-[320px]">
         {details.image ? (
           <Image
@@ -82,13 +81,11 @@ export default function RecipeDetails({
         </div>
       </div>
 
-      {/* Content card - dark */}
       <div className="relative z-10 mx-4 -mt-8 max-w-2xl rounded-2xl border border-neutral-700 bg-neutral-800 p-5 shadow-xl sm:mx-auto sm:p-6">
         <h1 className="text-xl font-semibold text-neutral-100 sm:text-2xl">
           {details.name}
         </h1>
 
-        {/* Meta strip */}
         <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-neutral-400">
           {details.cuisine ? (
             <span className="rounded-full bg-red-950 px-2.5 py-0.5 font-medium text-red-300">
@@ -125,7 +122,6 @@ export default function RecipeDetails({
           ) : null}
         </div>
 
-        {/* Ingredients */}
         <section className="mt-6 border-t border-neutral-700 pt-5">
           <h2 className="text-base font-semibold text-neutral-100">
             Ingredients
@@ -137,7 +133,6 @@ export default function RecipeDetails({
           </ul>
         </section>
 
-        {/* Instructions */}
         <section className="mt-6 border-t border-neutral-700 pt-5">
           <h2 className="text-base font-semibold text-neutral-100">
             Instructions

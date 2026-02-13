@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   keywords: ["recipes", "cooking", "food", "meal ideas", "recipe app"],
   authors: [{ name: "Tushar Bhatt" }],
   creator: "Tushar Bhatt",
-  // metadataBase: new URL("https://yourdomain.com"),
 };
 
 export default function RootLayout({

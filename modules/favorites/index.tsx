@@ -25,7 +25,6 @@ export default function Favorites() {
         )}
       </button>
 
-      {/* Overlay */}
       {sidebarOpen && (
         <button
           type="button"
@@ -35,7 +34,6 @@ export default function Favorites() {
         />
       )}
 
-      {/* Sidebar panel - slides in from right (Zomato cart style) */}
       <aside
         className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-sm flex-col border-l border-neutral-700 bg-neutral-900 shadow-2xl transition-transform duration-300 ease-out sm:max-w-md ${
           sidebarOpen ? "translate-x-0" : "translate-x-full"

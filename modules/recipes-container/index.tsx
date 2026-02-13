@@ -9,7 +9,6 @@ export default function RecipesContainer() {
 
   return (
     <div className="min-h-screen bg-neutral-900">
-      {/* Hero - Zomato-style header + search */}
       <header className="border-b border-neutral-800 bg-neutral-900 px-4 py-4 sm:px-6">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
@@ -24,7 +23,6 @@ export default function RecipesContainer() {
         </div>
       </header>
 
-      {/* Results */}
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         <RecipeList query={query} />
       </div>

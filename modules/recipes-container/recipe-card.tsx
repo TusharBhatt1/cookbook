@@ -1,13 +1,13 @@
 "use client";
 
-import { Recipe } from "@/lib/types";
+import type { IRecipe } from "@/lib/types";
 import { useFavorites } from "@/lib/favorites-context";
 import { Star, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function RecipeCard({ recipe }: { recipe: Recipe }) {
+export default function RecipeCard({ recipe }: { recipe: IRecipe }) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorited = isFavorite(String(recipe.id));
 
