@@ -38,7 +38,7 @@ export default function RecipeDetails({
         {details.image ? (
           <Image
             src={details.image}
-            alt=""
+            alt={details.name}
             fill
             className="object-cover"
             priority
@@ -105,7 +105,7 @@ export default function RecipeDetails({
           <h2 className="text-base font-semibold text-neutral-100">
             Ingredients
           </h2>
-          <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-neutral-300">
+          <ul className="mt-2 grid grid-cols-3 list-inside list-disc space-y-1 text-sm text-neutral-300">
             {details.ingredients.map((item, i) => (
               <li key={`${i}-${item}`}>{item}</li>
             ))}
@@ -120,7 +120,7 @@ export default function RecipeDetails({
           <ol className="mt-2 space-y-3 text-sm text-neutral-300">
             {details.instructions.map((step, i) => (
               <li key={`${i}-${step.slice(0, 20)}`} className="flex gap-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-950 text-xs font-semibold text-red-300">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-950 text-xs font-semibold">
                   {i + 1}
                 </span>
                 <span className="pt-0.5">{step}</span>
