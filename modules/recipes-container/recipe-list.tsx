@@ -1,29 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import getRecipeDetails from "@/server-actions/queries/get-recipe-details";
-import type { Recipe } from "@/lib/types";
-import { useQuery } from "@tanstack/react-query";
+
 import Link from "next/link";
 import EmptyState from "../common/empty-state";
 import ErrorState from "../common/error-state";
 import RecipeListSkeleton from "./recipe-list-skeleton";
-import { STALE_TIME } from "@/constant";
+import useRecipeList from "@/app/hooks/use-recipe-list";
 
 export default function RecipeList({ query }: { query: string }) {
-  const trimmed = query.trim();
-  const hasQuery = trimmed.length > 0;
-
-  const { data, isError, isLoading, isFetching } = useQuery({
-    queryKey: ["recipes", trimmed],
-    queryFn: () => getRecipeDetails(trimmed),
-    enabled: hasQuery,
-    staleTime: STALE_TIME,
-  });
-
-  const recipes = (data?.recipes ?? []) as Recipe[];
-  const hasResults = recipes.length > 0;
-  const showLoading = isLoading || (isFetching && hasQuery);
+  const { recipes, hasQuery, hasResults, isError, showLoading } = useRecipeList(
+    { query },
+  );
 
   if (!hasQuery) {
     return <EmptyState text={"Enter a search term to find recipes."} />;

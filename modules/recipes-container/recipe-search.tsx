@@ -16,6 +16,7 @@ export default function RecipeSearch({ query, setQuery }: IRecipeSearch) {
   return (
     <div className="relative flex">
       <input
+        id="search-recipe"
         type="search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
