@@ -69,10 +69,10 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
           </span>
         )}
       </div>
-      <div className="p-4">
-        <span className="block font-semibold text-white group-hover:text-red-400 transition-colors">
+      <div className="min-w-0 p-4">
+        <p className="line-clamp-1 font-semibold text-white group-hover:text-red-400 transition-colors">
           {recipe.name}
-        </span>
+        </p>
         {recipe.cuisine && (
           <span className="mt-0.5 block text-sm text-neutral-400">
             {recipe.cuisine}
