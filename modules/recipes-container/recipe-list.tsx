@@ -8,6 +8,7 @@ import Link from "next/link";
 import EmptyState from "../common/empty-state";
 import ErrorState from "../common/error-state";
 import RecipeListSkeleton from "./recipe-list-skeleton";
+import { STALE_TIME } from "@/constant";
 
 export default function RecipeList({ query }: { query: string }) {
   const trimmed = query.trim();
@@ -17,6 +18,7 @@ export default function RecipeList({ query }: { query: string }) {
     queryKey: ["recipes", trimmed],
     queryFn: () => getRecipeDetails(trimmed),
     enabled: hasQuery,
+    staleTime: STALE_TIME,
   });
 
   const recipes = (data?.recipes ?? []) as Recipe[];
