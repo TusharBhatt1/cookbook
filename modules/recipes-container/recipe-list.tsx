@@ -28,7 +28,7 @@ export default function RecipeList({ query }: { query: string }) {
 
   return (
     <ul
-      className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-h-[70vh] overflow-auto"
+      className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 max-h-[70vh] overflow-auto"
       role="list"
     >
       {recipes.map((recipe) => (
