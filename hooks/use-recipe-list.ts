@@ -1,12 +1,13 @@
 import getRecipes from "@/server-actions/queries/get-recipes";
 import type { IRecipe } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
-import { STALE_TIME } from "@/constant";
-import { useState } from "react";
+import { STALE_TIME, VISIBLE_COUNT } from "@/constant";
+import { useEffect, useRef, useState } from "react";
 import useVirtualizer from "./use-virtualizer";
 
 export default function useRecipeList({ query }: { query: string }) {
-  const [visibleCount, setVisibleCount] = useState(12);
+  const hasSearchedAndScrolled = useRef(false);
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_COUNT);
 
   const trimmedQuery = query.trim();
   const hasQuery = trimmedQuery.length > 0;
@@ -23,8 +24,18 @@ export default function useRecipeList({ query }: { query: string }) {
   const showLoading = isLoading || (isFetching && hasQuery);
 
   function updateVisibleCount() {
-    setVisibleCount((p) => (p + 12 > recipes.length ? recipes.length : p + 12));
+    hasSearchedAndScrolled.current = true;
+    setVisibleCount((p) =>
+      p + VISIBLE_COUNT > recipes.length ? recipes.length : p + VISIBLE_COUNT,
+    );
   }
+
+  useEffect(() => {
+    if (isFetching) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setVisibleCount(VISIBLE_COUNT);
+    }
+  }, [isFetching]);
 
   const { triggerRef } = useVirtualizer(updateVisibleCount);
 
