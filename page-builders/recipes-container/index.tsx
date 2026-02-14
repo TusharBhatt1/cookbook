@@ -11,12 +11,22 @@ export default function RecipesContainer() {
     <div className="min-h-screen bg-neutral-900">
       <header className="border-b border-neutral-800 bg-neutral-900 px-4 py-4 sm:px-6">
         <div className="mx-auto max-w-3xl">
-          <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            Discover recipes
-          </h1>
-          <p className="mt-1 text-neutral-400">
-            Search for cuisines, dishes, or ingredients
-          </p>
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                Discover recipes
+              </h1>
+              <p className="mt-1 text-neutral-400">
+                Search for cuisines, dishes, or ingredients
+              </p>
+            </div>
+            <a
+              href="https://tusharbhatt.vercel.app"
+              className="font-light underline text-neutral-400 hover:text-neutral-500"
+            >
+              Crafted by Tushar Bhatt
+            </a>
+          </div>
           <div className="mt-5">
             <RecipeSearch query={query} setQuery={setQuery} />
           </div>
