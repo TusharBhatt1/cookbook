@@ -25,7 +25,7 @@ export default function RecipeSearch({ setQuery }: IRecipeSearch) {
     <div className="relative flex">
       {/* Search Icon */}
       <Search
-        className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-500"
+        className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-neutral-500"
         aria-hidden
       />
 
@@ -34,7 +34,7 @@ export default function RecipeSearch({ setQuery }: IRecipeSearch) {
         id="search-recipe"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search for pizza, pasta, Indian..."
+        placeholder="Search here..."
         aria-label="Search recipes"
         className="w-full rounded-xl border border-neutral-700 bg-neutral-800 py-3.5 pl-12 pr-12 text-white placeholder:text-neutral-500 transition focus:border-red-500/50 focus:outline-none focus:ring-2 focus:ring-red-500/20"
       />
