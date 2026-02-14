@@ -2,7 +2,7 @@
 import EmptyState from "../(common)/empty-state";
 import ErrorState from "../(common)/error-state";
 import RecipeListSkeleton from "./recipe-list-skeleton";
-import useRecipeList from "@/hooks/use-recipe-list";
+import useRecipeList from "@/page-builders/(hooks)/use-recipe-list";
 import RecipeCard from "./recipe-card";
 import SearchBanner from "./search-banner";
 import { Loader2 } from "lucide-react";

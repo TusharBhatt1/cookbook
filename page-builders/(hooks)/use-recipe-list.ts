@@ -3,7 +3,7 @@ import type { IRecipe } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { STALE_TIME, VISIBLE_COUNT } from "@/constant";
 import { useEffect, useRef, useState } from "react";
-import useVirtualizer from "./use-virtualizer";
+import useVirtualizer from "../../hooks/use-virtualizer";
 
 export default function useRecipeList({ query }: { query: string }) {
   const hasSearchedAndScrolled = useRef(false);
