@@ -1,17 +1,16 @@
 "use client";
 
-import { DEBOUNCE_THRESHOLD } from "@/constant";
+import useDebounce from "@/hooks/use-debounce";
 import type { IRecipeSearch } from "@/lib/types";
 import { Search } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function RecipeSearch({ query, setQuery }: IRecipeSearch) {
   const [search, setSearch] = useState(query);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setQuery(search), DEBOUNCE_THRESHOLD);
-    return () => clearTimeout(timer);
-  }, [search, setQuery]);
+  function handleSetQuery(value: string) {
+    setQuery(value);
+  }
+  useDebounce({ value: search, cb: handleSetQuery });
 
   return (
     <div className="relative flex">
