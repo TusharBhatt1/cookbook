@@ -32,6 +32,20 @@ Search and other shareable state live in the URL via query params (e.g. `?search
 - **Predictable state** — No hidden client-only state for core flows.
 - **Simpler data flow** — Server and client stay in sync with the URL.
 
+### Reusable logic
+
+Common logic is extracted into custom hooks inside the hooks/ directory to keep components clean and focused on UI.
+
+Examples include:
+
+- **useDebounce** — Optimizes search performance.
+
+- **useLocalStorage** — Persists client state (e.g. favorites).
+
+- **Encapsulated** favorite management logic — Prevents duplication and ensures consistent updates.
+
+This improves maintainability, testability, and separation of concerns.
+
 ### Data fetching
 
 **TanStack Query** is used for server data. It provides:
@@ -57,8 +71,6 @@ Search and other shareable state live in the URL via query params (e.g. `?search
 
 - **Debounced search** — Reduces API calls and input jank.
 - **Progressive list rendering** — Only render visible items where needed.
-- **Dynamic imports** — Non-critical UI loaded on demand.
-- **Code splitting** — Leverages Next.js automatic splitting by route and dynamic imports.
 
 ---
 
