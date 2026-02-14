@@ -8,15 +8,19 @@ import { useState } from "react";
 
 export default function RecipeSearch({ setQuery }: IRecipeSearch) {
   const searchParams = useSearchParams();
-  const searchFromUrl = searchParams.get("search") || "";
+  const currentSearch = searchParams.get("search") || "";
 
-  const [search, setSearch] = useState(searchFromUrl);
+  const [search, setSearch] = useState(currentSearch);
 
   const router = useRouter();
   function handleSetQuery(value: string) {
+    if (value === currentSearch) return;
     setQuery(value);
-    if (value) router.push(`?search=${value}`);
-    else router.push("?");
+    if (value) {
+      router.push(`?search=${value}`);
+      return;
+    }
+    router.push("?");
   }
 
   useDebounce({ value: search, cb: handleSetQuery });

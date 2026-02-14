@@ -3,9 +3,13 @@
 import { Suspense, useState } from "react";
 import RecipeSearch from "./recipe-search";
 import RecipeList from "./recipe-list";
+import AboutModal from "@/page-builders/modals/about-modal";
+import { Info } from "lucide-react";
 
 export default function RecipesContainer() {
   const [query, setQuery] = useState("");
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [hasClickedInfo, setHasClickedInfo] = useState(false);
 
   return (
     <div className="min-h-screen bg-neutral-900">
@@ -20,26 +24,20 @@ export default function RecipesContainer() {
                 Search for cuisines, dishes, or ingredients
               </p>
             </div>
-            <div className="flex flex-col gap-1 sm:mt-0 mt-14 text-neutral-500">
-              <a
-                target="_blank"
-                aria-label="Crafted by"
-                href="https://tusharbhatt.vercel.app"
-                className="font-light hover:underline  hover:text-neutral-400 sm:text-md text-xs"
-              >
-                Crafted by Tushar Bhatt
-              </a>
-              <a
-                target="_blank"
-                aria-label="Repository link"
-                className="text-xs hover:underline text-neutral-500"
-                href="https://github.com/TusharBhatt1/cookbook"
-              >
-                See code here
-              </a>
-            </div>
+            <Info
+              onClick={() => {
+                setAboutOpen(true);
+                setHasClickedInfo(true);
+              }}
+              tabIndex={0}
+              aria-label="Information"
+              className={`cursor-pointer text-neutral-500   focus:outline-none
+ hover:text-neutral-100 transition animate-${
+   hasClickedInfo ? "none" : "pulse"
+ }`}
+            />
           </div>
-          <div className="mt-5">
+          <div className="mt-3">
             {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
             <Suspense>
               <RecipeSearch query={query} setQuery={setQuery} />
@@ -51,6 +49,8 @@ export default function RecipesContainer() {
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         <RecipeList query={query} />
       </div>
+
+      <AboutModal isOpen={aboutOpen} onClose={() => setAboutOpen(false)} />
     </div>
   );
 }

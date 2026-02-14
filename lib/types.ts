@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IRecipeSearch {
   query: string;
   setQuery: (value: string) => void;
@@ -44,4 +46,18 @@ export interface IFavoritesContext {
   removeFavorite: (id: string) => void;
   isFavorite: (id: string) => boolean;
   toggleFavorite: (item: IFavoriteItem) => void;
+}
+
+export interface IAboutModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export interface IModal {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  titleId?: string;
+  children: ReactNode;
+  maxWidth?: string;
 }
