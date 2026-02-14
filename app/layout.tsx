@@ -15,12 +15,19 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: "Recipe Finder",
-    template: "%s | Recipe Finder",
+    default: "Cook Book",
+    template: "%s | Cook Book",
   },
   description:
     "Discover, search, and save your favorite delicious recipes with ease.",
-  keywords: ["recipes", "cooking", "food", "meal ideas", "recipe app"],
+  keywords: [
+    "cook book",
+    "recipes",
+    "cooking",
+    "food",
+    "meal ideas",
+    "recipe app",
+  ],
   authors: [{ name: "Tushar Bhatt" }],
   creator: "Tushar Bhatt",
 };
