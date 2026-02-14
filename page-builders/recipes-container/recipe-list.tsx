@@ -1,6 +1,6 @@
 "use client";
-import EmptyState from "../common/empty-state";
-import ErrorState from "../common/error-state";
+import EmptyState from "../(common)/empty-state";
+import ErrorState from "../(common)/error-state";
 import RecipeListSkeleton from "./recipe-list-skeleton";
 import useRecipeList from "@/hooks/use-recipe-list";
 import RecipeCard from "./recipe-card";
