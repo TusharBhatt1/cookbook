@@ -1,4 +1,4 @@
-import RecipeDetails from "@/modules/recipe-details";
+import RecipeDetails from "@/page-builders/recipe-details";
 import getRecipeDetails from "@/server-actions/queries/get-recipe-details";
 
 export default async function Page({

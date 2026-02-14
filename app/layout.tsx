@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import QueryClientProvider from "@/lib/query-client.provider";
 import { FavoritesProvider } from "@/lib/favorites-context";
-import Favorites from "@/modules/favorites";
+import Favorites from "@/page-builders/favorites";
 
 const poppins = Poppins({
   subsets: ["latin"],
