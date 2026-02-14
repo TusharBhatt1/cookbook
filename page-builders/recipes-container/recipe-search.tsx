@@ -6,7 +6,7 @@ import { Search, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-export default function RecipeSearch({ setQuery }: IRecipeSearch) {
+export default function RecipeSearch({ query, setQuery }: IRecipeSearch) {
   const searchParams = useSearchParams();
   const currentSearch = searchParams.get("search") || "";
 
@@ -14,7 +14,7 @@ export default function RecipeSearch({ setQuery }: IRecipeSearch) {
 
   const router = useRouter();
   function handleSetQuery(value: string) {
-    if (value === currentSearch) return;
+    if (value === currentSearch && query === value) return;
     setQuery(value);
     if (value) {
       router.push(`?search=${value}`);
