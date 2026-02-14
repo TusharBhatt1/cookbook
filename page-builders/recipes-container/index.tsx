@@ -9,7 +9,7 @@ export default function RecipesContainer() {
 
   return (
     <div className="min-h-screen bg-neutral-900">
-      <header className="border-b border-neutral-800 bg-neutral-900 px-4 py-4 sm:px-6">
+      <header className="border-b border-neutral-800 bg-neutral-900 p-4">
         <div className="mx-auto max-w-3xl">
           <div className="flex justify-between sm:items-center items-end">
             <div>
