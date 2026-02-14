@@ -46,6 +46,8 @@ Examples include:
 - **useDebounce** — Optimizes search performance.
 
 - **useLocalStorage** — Persists client state (e.g. favorites).
+  
+- **useRecipeList** - Custom hook to separate logic with UI
 
 - **Encapsulated** favorite management logic — Prevents duplication and ensures consistent updates.
 
