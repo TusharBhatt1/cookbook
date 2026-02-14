@@ -14,6 +14,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const details = await getRecipe(id);
+
   if (!details) {
     return { title: "Recipe not found" };
   }

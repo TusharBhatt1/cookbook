@@ -31,6 +31,7 @@ Search and other shareable state live in the URL via query params (e.g. `?search
 - **Shareable URLs** — Any view can be bookmarked or linked.
 - **Predictable state** — No hidden client-only state for core flows.
 - **Simpler data flow** — Server and client stay in sync with the URL.
+- **Dynamic metadata** — SEO title and description are generated per recipe using `generateMetadata`, ensuring accurate previews and better search visibility.
 
 ### Reusable logic
 
