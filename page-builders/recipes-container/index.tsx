@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import RecipeSearch from "./recipe-search";
 import RecipeList from "./recipe-list";
 
@@ -28,7 +28,10 @@ export default function RecipesContainer() {
             </a>
           </div>
           <div className="mt-5">
-            <RecipeSearch query={query} setQuery={setQuery} />
+            {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
+            <Suspense>
+              <RecipeSearch query={query} setQuery={setQuery} />
+            </Suspense>
           </div>
         </div>
       </header>

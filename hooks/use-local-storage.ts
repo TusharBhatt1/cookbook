@@ -1,31 +1,39 @@
 import { useEffect, useState } from "react";
 
-export default function useLocalStorage({
+export default function useLocalStorage<T>({
   key,
   initialValue,
 }: {
   key: string;
-  initialValue: unknown;
+  initialValue: T;
 }) {
-  const [data, setData] = useState(() => {
+  const [data, setData] = useState<T>(initialValue);
+
+  // Load from localStorage (client only)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
     try {
-      const dataInStorage = localStorage.getItem(key);
-      if (dataInStorage) {
-        return JSON.parse(dataInStorage);
+      const item = localStorage.getItem(key);
+      if (item) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setData(JSON.parse(item));
       }
-      return initialValue;
     } catch (error) {
       console.error(error);
-      return initialValue;
     }
-  });
+  }, [key]);
 
+  // Save to localStorage
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(data));
+    if (typeof window === "undefined") return;
+
+    try {
+      localStorage.setItem(key, JSON.stringify(data));
+    } catch (error) {
+      console.error(error);
+    }
   }, [key, data]);
 
-  return {
-    data,
-    setData,
-  };
+  return { data, setData };
 }
