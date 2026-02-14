@@ -12,7 +12,6 @@ import {
   Search,
   Link,
   RefreshCw,
-  Clock,
   HardDrive,
   FolderTree,
   Layers,

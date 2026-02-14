@@ -61,3 +61,7 @@ export interface IModal {
   children: ReactNode;
   maxWidth?: string;
 }
+
+export enum QUERY_KEYS {
+  recipes = "recipes",
+}
