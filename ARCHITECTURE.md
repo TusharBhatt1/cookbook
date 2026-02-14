@@ -8,13 +8,13 @@
 
 ## Structure
 
-| Directory         | Purpose                     |
-| ----------------- | --------------------------- |
-| `app/`            | Routing and global layout   |
-| `page-builders/`  | Feature-based UI modules    |
-| `hooks/`          | Reusable logic              |
-| `lib/`            | Providers, types, utilities |
-| `server-actions/` | Data fetching and mutations |
+| Directory         | Purpose                         |
+| ----------------- | ------------------------------- |
+| `app/`            | Routing, layout, error boundary |
+| `page-builders/`  | Feature-based UI modules        |
+| `hooks/`          | Reusable logic                  |
+| `lib/`            | Providers, types, utilities     |
+| `server-actions/` | Data fetching and mutations     |
 
 ---
 
@@ -32,6 +32,10 @@ Search and other shareable state live in the URL via query params (e.g. `?search
 - **Predictable state** — No hidden client-only state for core flows.
 - **Simpler data flow** — Server and client stay in sync with the URL.
 - **Dynamic metadata** — SEO title and description are generated per recipe using `generateMetadata`, ensuring accurate previews and better search visibility.
+
+### Error boundary
+
+A single **error boundary** at the root (`app/error.tsx`) catches unhandled errors app-wide. It shows “Something went wrong” with “Try again” and “Back to home”, logs the error, and exposes `reset()` so users can retry without a full reload. This keeps the UI stable and avoids blank screens on failures.
 
 ### Reusable logic
 
