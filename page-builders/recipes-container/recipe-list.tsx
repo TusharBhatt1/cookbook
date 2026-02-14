@@ -44,7 +44,7 @@ export default function RecipeList({ query }: { query: string }) {
         ))}
       </ul>
       <p
-        className="text-center py-2 text-neutral-600 flex justify-center items-center"
+        className="text-center pt-7 text-neutral-600 flex justify-center items-center"
         ref={triggerRef}
       >
         {visibleCount === recipes.length ? (

@@ -1,7 +1,14 @@
 "use client";
 
-import React, { createContext, useCallback, useContext, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { IFavoriteItem, IFavoritesContext } from "./types";
+import useLocalStorage from "@/hooks/use-local-storage";
 
 const FavoritesContext = createContext<IFavoritesContext | undefined>(
   undefined,
@@ -11,16 +18,39 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
   const [favorites, setFavorites] = useState<IFavoriteItem[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const addFavorite = useCallback((item: IFavoriteItem) => {
-    setFavorites((prev) => {
-      if (prev.some((f) => f.id === item.id)) return prev;
-      return [...prev, item];
+  const { data: favoritesInLocalStorage, setData: setFavoritesToLocalStorage } =
+    useLocalStorage({
+      key: "favorites",
+      initialValue: favorites,
     });
-  }, []);
 
-  const removeFavorite = useCallback((id: string) => {
-    setFavorites((prev) => prev.filter((f) => f.id !== id));
-  }, []);
+  const addFavorite = useCallback(
+    (item: IFavoriteItem) => {
+      setFavorites((prev) => {
+        let updatedFavorites;
+        if (prev.some((f) => f.id === item.id)) updatedFavorites = prev;
+        else updatedFavorites = [...prev, item];
+        setFavoritesToLocalStorage(updatedFavorites);
+        return updatedFavorites;
+      });
+    },
+    [setFavoritesToLocalStorage],
+  );
+
+  useEffect(() => {
+    setFavorites(favoritesInLocalStorage);
+  }, [favoritesInLocalStorage]);
+
+  const removeFavorite = useCallback(
+    (id: string) => {
+      setFavorites((prev) => {
+        const updatedFavorites = prev.filter((f) => f.id !== id);
+        setFavoritesToLocalStorage(updatedFavorites);
+        return updatedFavorites;
+      });
+    },
+    [setFavoritesToLocalStorage],
+  );
 
   const isFavorite = useCallback(
     (id: string) => favorites.some((f) => f.id === id),
