@@ -72,6 +72,7 @@ This improves maintainability, testability, and separation of concerns.
 
 - **Debounced search** — Reduces API calls and input jank.
 - **Progressive list rendering** — Only render visible items where needed.
+- **React `cache()` for data deduplication** — Ensures a single fetch per request lifecycle (metadata + page).
 
 ---
 
