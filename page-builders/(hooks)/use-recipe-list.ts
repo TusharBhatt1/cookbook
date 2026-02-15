@@ -2,11 +2,10 @@ import getRecipes from "@/server-actions/queries/get-recipes";
 import { QUERY_KEYS, type IRecipe } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { STALE_TIME, VISIBLE_COUNT } from "@/constant";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import useVirtualizer from "@/hooks/use-virtualizer";
 
 export default function useRecipeList({ query }: { query: string }) {
-  const hasSearchedAndScrolled = useRef(false);
   const [visibleCount, setVisibleCount] = useState(VISIBLE_COUNT);
 
   const trimmedQuery = query.trim();
@@ -24,7 +23,6 @@ export default function useRecipeList({ query }: { query: string }) {
   const showLoading = isLoading || (isFetching && hasQuery);
 
   function updateVisibleCount() {
-    hasSearchedAndScrolled.current = true;
     setVisibleCount((p) =>
       p + VISIBLE_COUNT > recipes.length ? recipes.length : p + VISIBLE_COUNT,
     );
