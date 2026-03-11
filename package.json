@@ -13,6 +13,8 @@
     "test": "npm run lint && npm run format"
   },
   "dependencies": {
+    "@cobaltio/cobalt": "^1.3.0",
+    "@cobaltio/cobalt-js": "^9.2.0-beta.4",
     "@tanstack/react-query": "^5.90.21",
     "lucide-react": "^0.564.0",
     "next": "16.1.6",
